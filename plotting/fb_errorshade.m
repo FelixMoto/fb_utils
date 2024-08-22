@@ -48,6 +48,7 @@ hf = fill([tax(1:end) tax(end:-1:1)],[SEM(1,:) SEM(2,[end:-1:1])], ...
     cuse);
 set(hf,'EdgeColor',edgecolor);
 set(hf,'FaceAlpha',arg.FaceAlpha);
+set(hf,'LineStyle',arg.LineStyle);
 
 hp =  plot(tax(1:end),M,'Color',cuse);
 set(hp,'LineWidth',2)
@@ -74,6 +75,11 @@ addParameter(p,'FaceAlpha',0.4,validFcn);
 errorMsg = 'FaceAlpha must be RGB triplet or string';
 validFcn = @(x) assert(ischar(x) | isvector(x),errorMsg);
 addParameter(p,'EdgeColor','cuse',validFcn);
+
+% fill edge line style
+errorMsg = 'LineStyle must be a valid string or none';
+validFcn = @(x) assert(ischar(x),errorMsg);
+addParameter(p,'LineStyle','-',validFcn);
 
 % Parse input arguments
 parse(p,varargin{1,1}{:});
